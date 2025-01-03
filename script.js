@@ -4,23 +4,38 @@ document.addEventListener("DOMContentLoaded", () => {
   // Generate current month and previous months
   const now = new Date();
   const currentMonthIndex = now.getMonth();
+  const currentYear = now.getFullYear();
   const months = [
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
 
-  for (let i = currentMonthIndex; i >= 0; i--) {
+  if (currentMonthIndex < 6) {
+    const previousYear = now.getFullYear() - 1;
+    for (let i = currentMonthIndex; i >= 0; i--) {
+      newMonthHtml(i, currentYear);
+    }
+    for (let i = 11; i >= 7 + currentMonthIndex; i--) {
+      newMonthHtml(i, previousYear);
+    }
+  }
+
+  function newMonthHtml(currentMonth, currentYear) {
     const monthBlock = document.createElement("div");
     monthBlock.classList.add("month-block");
+    monthBlock.classList.add("border");
+    monthBlock.classList.add("p-2");
 
     monthBlock.innerHTML = `
-      <h2>${months[i]}</h2>
-      <div class="line-item">
+      <h2>${months[currentMonth]} ${currentYear}</h2>
+      <div class="line-item border p-2">
         <span>Update PDF #1</span>
         <div>
-          <i class="fas fa-file-upload"></i>
-          <i class="fas fa-edit"></i>
-          <i class="fas fa-check-circle"></i>
+          <button type="button" id="Luz${months[currentMonth]}${currentYear}" class="btn btn-primary btn-sm">Luz &nbsp;<i class="fa-regular fa-lightbulb"></i></button>
+          <button type="button" id="Gas${months[currentMonth]}${currentYear}" class="btn btn-primary btn-sm">Gas &nbsp;<i class="fa-solid fa-fire"></i></button>
+          <button type="button" id="Agua${months[currentMonth]}${currentYear}" class="btn btn-primary btn-sm">Aguas &nbsp;<i class="fa-solid fa-droplet"></i></button>
+          
+          
         </div>
       </div>
     `;
@@ -34,3 +49,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+
