@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     "January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
   ];
-
+  
   if (currentMonthIndex < 6) {
     const previousYear = now.getFullYear() - 1;
     for (let i = currentMonthIndex; i >= 0; i--) {
@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
       newMonthHtml(i, previousYear);
     }
   }
-
+  
   function newMonthHtml(currentMonth, currentYear) {
     const monthBlock = document.createElement("div");
     monthBlock.classList.add("month-block");
@@ -49,5 +49,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
-
-
+  
